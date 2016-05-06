@@ -1,0 +1,20 @@
+{
+  "name": "gulpsass",
+  "version": "1.0.0",
+  "description": "Simple environment to test Sass with gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "sass"
+  ],
+  "author": "Mustafa",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.12.5",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1"
+  }
+}
