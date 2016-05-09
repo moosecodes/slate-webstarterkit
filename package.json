@@ -1,20 +1,26 @@
 {
-  "name": "gulpsass",
+  "name": "toolbox",
   "version": "1.0.0",
-  "description": "Simple environment to test Sass with gulp",
+  "description": "Dev Environment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [
     "gulp",
-    "sass"
+    "sass",
+    "jade",
+    "moose"
   ],
-  "author": "Mustafa",
-  "license": "ISC",
+  "author": "Mustafa Ishaq",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.12.5",
     "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.1"
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0"
   }
 }

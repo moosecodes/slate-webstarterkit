@@ -1,25 +1,44 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+var concat = require('gulp-concat');
+var plumber = require('gulp-plumber');
 
-gulp.task('sass', function() {
+function onError(err) {
+    console.log(err);
+}
+
+gulp.task('styles', function() {
     gulp.src('sass/**/*.scss')
         .pipe(sass({
                     indentedSyntax: true
                    }
                    ).on('error', sass.logError))
         .pipe(gulp.dest('./css/'))
+        .pipe(sourcemaps.init())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(concat('sassy.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('css'))
+        .pipe(plumber({
+            errorHandler: onError
+        }))
         .pipe(browserSync.stream());
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', ['styles'], function() {
 
     browserSync.init({
         server: "./"
     });
 
-    gulp.watch("sass/**/*.scss", ['sass']);
+    gulp.watch("sass/**/*.scss", ['styles']);
     gulp.watch("*.html").on('change', browserSync.reload);
 });
 
