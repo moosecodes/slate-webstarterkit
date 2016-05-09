@@ -6,6 +6,15 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var jade = require('gulp-jade');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+
+gulp.task('lint', function() {
+  return gulp.src('./js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish))
+    .pipe(browserSync.stream());
+});
 
 function onError(err) {
     console.log(err);
@@ -23,7 +32,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('styles', function() {
-    gulp.src('sass/**/*.scss')
+    gulp.src('./sass/**/*.scss')
         .pipe(sass({
                     indentedSyntax: true
                    }
@@ -50,9 +59,10 @@ gulp.task('serve', ['styles','jade'], function() {
         server: "./"
     });
 
-    gulp.watch("sass/**/*.scss", ['styles']);
-    gulp.watch("jade/*.jade", ['jade']);
-    gulp.watch("*.html").on('change', browserSync.reload);
+    gulp.watch("./sass/**/*.scss", ['styles']);
+    gulp.watch("./jade/*.jade", ['jade']);
+    gulp.watch("./js/*.js", ['lint']);
+    gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
 

@@ -19,12 +19,14 @@ html(lang="en")
         strong focus on performance
         and powerful features.
 
-
+ - var arr = ['<a>','<b>','<c>']
     .col-xs-12.col-sm-6.col-md-4.col-lg-3
       header hello
       bst-table.table.table-bordered.table-hover
         thead
-          tr
+          tr moose
+            td test
+          tr iphone
             th
         tbody
           tr
@@ -40,7 +42,25 @@ html(lang="en")
 
           bst-button hello
 
+          - var arr = ['<a>','<b>','<c>']
+          ul
+            - for (var i = 0; i< arr.length; i++)
+              li
+                span= i
+                span!=" unescaped: " + arr[i] + " vs. "
+                span= " escaped: " + arr[i]
+
+          - var languages = {'php': -1, 'node': 2, 'ruby':1}
+          div
+            each value, key in languages
+              p= key + ": " + value
+
+          - var title = "Express.js Guide MOOSE"
+          p Read the #{title} in PDF, MOBI and EPUB
 
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
 
+    script(src="https://code.jquery.com/jquery-1.11.3.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous")
+    script(src="js/scripts.js")
 
