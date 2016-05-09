@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (1===1) {
+          console.log(1 + 8)
+      }
+  body
+    h1 Jade - node template engine
+    #container.col
+      if youAreUsingJade
+        p You are amazing
+      else
+        p Get on it!
+      p.test
+        Jade is a terse and simple
+        templating language with a
+        strong focus on performance
+        and powerful features.
+
+
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3
+      header hello
+      bst-table.table.table-bordered.table-hover
+        thead
+          tr
+            th
+        tbody
+          tr
+            td
+
+        bst-button
+        form(action="", method="POST", role="form")
+          legend Moose Hello
+          .form-group
+            label(for="") label
+            input.form-control(type="text", placeholder="Input field")
+          button.btn.btn-primary(type="submit") Submit
+
+          bst-button hello
+
+
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
+
+

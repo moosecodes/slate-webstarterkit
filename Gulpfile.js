@@ -5,10 +5,22 @@ var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
+var jade = require('gulp-jade');
 
 function onError(err) {
     console.log(err);
 }
+
+gulp.task('jade', function() {
+  var YOUR_LOCALS = {};
+
+  gulp.src('./jade/*.jade')
+    .pipe(jade({
+      locals: YOUR_LOCALS,
+      pretty: true
+    }))
+    .pipe(gulp.dest('./'))
+});
 
 gulp.task('styles', function() {
     gulp.src('sass/**/*.scss')
@@ -32,13 +44,14 @@ gulp.task('styles', function() {
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['styles'], function() {
+gulp.task('serve', ['styles','jade'], function() {
 
     browserSync.init({
         server: "./"
     });
 
     gulp.watch("sass/**/*.scss", ['styles']);
+    gulp.watch("jade/*.jade", ['jade']);
     gulp.watch("*.html").on('change', browserSync.reload);
 });
 
