@@ -8,6 +8,17 @@ var plumber = require('gulp-plumber');
 var jade = require('gulp-jade');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
+var uglify = require('gulp-uglify');
+
+function onError(err) {
+    console.log(err);
+}
+
+gulp.task('compress', function() {
+  return gulp.src('js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('lint', function() {
   return gulp.src('./js/*.js')
@@ -15,10 +26,6 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter(stylish))
     .pipe(browserSync.stream());
 });
-
-function onError(err) {
-    console.log(err);
-}
 
 gulp.task('jade', function() {
   var YOUR_LOCALS = {};
@@ -53,15 +60,20 @@ gulp.task('styles', function() {
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['styles','jade'], function() {
+gulp.task('serve', ['styles','jade', 'lint', 'compress'], function() {
 
     browserSync.init({
-        server: "./"
+        server: "./",
+        // Run as an https by uncommenting 'https: true'
+        // Note: this uses an unsigned certificate which on first access
+        //       will present a certificate warning in the browser.
+        // https: true,
     });
 
     gulp.watch("./sass/**/*.scss", ['styles']);
     gulp.watch("./jade/*.jade", ['jade']);
-    gulp.watch("./js/*.js", ['lint']);
+    gulp.watch("./scripts/*.js", ['lint']);
+    gulp.watch("./css/*.css").on('change', browserSync.reload);
     gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
