@@ -2,6 +2,7 @@
   "name": "Slate",
   "version": "1.0.0",
   "description": "Rapid Prototyping Environment",
+  "repository": "https://github.com/moosecodes/slate-webstarterkit.git",
   "main": "index.js",
   "scripts": {
     "test": ""
